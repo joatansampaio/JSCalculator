@@ -22,6 +22,7 @@ one.addEventListener("click", eventClick);
 
 function eventClick() {
   display.innerText += "1";
+  alert("ola");
   return 0;
 }
 
