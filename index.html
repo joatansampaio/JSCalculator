@@ -5,43 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script src="Calculator.js" async></script>
     <title>JavaScript Based Calculator</title>
   </head>
   <body>
     <h1>Calculator</h1>
     <div id="calcBox" class="calcBox">
-      <div class="display" id="box-display"></div>
+      <div class="display" id="display-box"><span id="startValue"></span></div>
       <table class="calculator">
         <tbody>
             <tr>
-              <td><input class="button" type="button" value="&#8730" id="sqrt" /></td>
-              <td><input class="button" type="button" value="%" id="percent" /></td>
-              <td><input class="button" type="button" value="&#8592" id="backspace" /></td>
-              <td><input class="button" type="button" value="/" id="division"/></td>
+              <td><button number-data>&#8730</button></td>
+              <td><button number-data>%</button></td>
+              <td><button number-data>&#8592</button></td>
+              <td><button division-operator>/</button></td>
             </tr>
             <tr>
-              <td><input class="button" type="button" value="7" id = "seven"/></td>
-              <td><input class="button" type="button" value="8" id = "eight"/></td>
-              <td><input class="button" type="button" value="9" id = "nine"/></td>
-              <td><input class="button" type="button" value="*" id = "mult"/></td>
+              <td><button number-data>7</button></td>
+              <td><button number-data>8</button></td>
+              <td><button number-data>9</button></td>
+              <td><button number-data>*</button></td>
             </tr>
             <tr>
-              <td><input class="button" type="button" value="4" id = "four"/></td>
-              <td><input class="button" type="button" value="5" id = "five"/></td>
-              <td><input class="button" type="button" value="6" id = "six"/></td>
-              <td><input class="button" type="button" value="-" id = "sub"/></td>
+              <td><button number-data>4</button></td>
+              <td><button number-data>5</button></td>
+              <td><button number-data>6</button></td>
+              <td><button number-data>-</button></td>
             </tr>
             <tr>
-              <td><input class="button" type="button" value="1" id="one" /></td>
-              <td><input class="button" type="button" value="2" id="two"/></td>
-              <td><input class="button" type="button" value="3" id="three"/></td>
-              <td><input class="button" type="button" value="+" id="sum"/></td>
+              <td><button number-data>1</button></td>
+              <td><button number-data>2</button></td>
+              <td><button number-data>3</button></td>
+              <td><button operator-button>+</button></td>
             </tr>
             <tr>
-              <td><input class="button" type="button" value="C" id="clear" /></td>
-              <td><input class="button" type="button" value="0" id="zero"/></td>
-              <td><input class="button" type="button" value="." id="dot"/></td>
-              <td><input class="button" type="button" value="=" id="equal"/></td>
+              <td><button number-data>C</button></td>
+              <td><button number-data>0</button></td>
+              <td><button number-data>.</button></td>
+              <td><button number-data>=</button></td>
             </tr>
             </tbody>
           </table>
