@@ -1,53 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="Calculator.js" async></script>
-    <title>JavaScript Based Calculator</title>
-  </head>
-  <body>
-    <h1>Calculator</h1>
-    <div id="calcBox" class="calcBox">
-      <div class="display" id="display-box"><span id="startValue"></span></div>
-      <table class="calculator">
-        <tbody>
-            <tr>
-              <td><button operator-button>&#8730</button></td>
-              <td><button operator-button>%</button></td>
-              <td><button backspace-button>&#8592</button></td>
-              <td><button operator-button>/</button></td>
-            </tr>
-            <tr>
-              <td><button number-data>7</button></td>
-              <td><button number-data>8</button></td>
-              <td><button number-data>9</button></td>
-              <td><button operator-button>*</button></td>
-            </tr>
-            <tr>
-              <td><button number-data>4</button></td>
-              <td><button number-data>5</button></td>
-              <td><button number-data>6</button></td>
-              <td><button operator-button>-</button></td>
-            </tr>
-            <tr>
-              <td><button number-data>1</button></td>
-              <td><button number-data>2</button></td>
-              <td><button number-data>3</button></td>
-              <td><button operator-button>+</button></td>
-            </tr>
-            <tr>
-              <td><button clear-button>C</button></td>
-              <td><button number-data>0</button></td>
-              <td><button dot-button>.</button></td>
-              <td><button equals-button>=</button></td>
-            </tr>
-            </tbody>
-          </table>
-        </tbody>
-        
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="calculator.js"></script>
+  <script defer src="script.js"></script>
+  <title>JavaScript Based Calculator</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="calculator">
+      <div class="display">
+        <div previous-operand-text class="previous-operand"></div>
+        <div current-operand-text class="current-operand"></div>
+      </div>
+      <button all-clear>AC</button>
+      <button delete>DEL</button>
+      <button operator>÷</button>
+      <button number>1</button>
+      <button number>2</button>
+      <button number>3</button>
+      <button operator>*</button>
+      <button number>4</button>
+      <button number>5</button>
+      <button number>6</button>
+      <button operator>+</button>
+      <button number>7</button>
+      <button number>8</button>
+      <button number>9</button>
+      <button operator>-</button>
+      <button number>.</button>
+      <button number>0</button>
+      <button equals>=</button>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

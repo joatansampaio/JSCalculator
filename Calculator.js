@@ -1,78 +1,89 @@
-const numberButtons = document.querySelectorAll("[number-data]");
-const dotButton = document.querySelector("[dot-button]");
-const backspaceButton = document.querySelector("[backspace-button]");
-const clearButton = document.querySelector("[clear-button]");
-const operatorButton = document.querySelectorAll("[operator-button]");
-const equalsButton = document.querySelector("[equals-button]");
-const display = document.getElementById("display-box");
-var previousNumber = 0;
-var currentNumber = 0;
-var isOperating = false;
-var operation = "";
-function resetAll() {
-  previousNumber = 0;
-  currentNumber = 0;
-  isOperating = false;
-  operation = "";
-}
-//Faz o update do display
-function updateDisplay(text) {
-  display.textContent = text;
-}
+class Calculator {
 
-//BOTAO DE IGUAL
-equalsButton.addEventListener("click", () => {
-  isOperating = false;
-  if (operation == "+") {
-    updateDisplay(previousNumber + currentNumber);
+  constructor(previousNumberElement, currentNumberElement) {
+    this.previousNumberElement = previousNumberElement;
+    this.currentNumberElement = currentNumberElement;
+    this.clear();
   }
-  if (operation == "-") {
-    updateDisplay(previousNumber - currentNumber);
-  }
-  if (operation == "*") {
-    updateDisplay(previousNumber * currentNumber);
-  }
-  if (operation == "/") {
-    updateDisplay(previousNumber / currentNumber);
-  }
-  resetAll();
-});
-//FILTRAR OPERACOES
-operatorButton.forEach((button) => {
-  button.addEventListener("click", () => {
-    isOperating = true;
-    operation = button.textContent;
-    console.log(operation);
-  });
-});
-
-//NUMEROS
-numberButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (isOperating) {
-      previousNumber = parseInt(display.textContent);
-      updateDisplay("");
-      isOperating = false;
+  
+  updateDisplay() {
+    this.currentNumberElement.innerText =
+      this.getDisplayNumber(this.currentOperand);
+    if (this.operation != null) {
+      this.previousNumberElement.innerText =
+        `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+    }else{
+      this.previousNumberElement.innerText = '';
     }
-    display.textContent += button.textContent;
-    currentNumber = parseInt(display.textContent);
-    console.log("Current Number:", currentNumber);
-  });
-});
-//PONTO
-dotButton.addEventListener("click", () => {
-  if (!display.textContent.includes(".")) {
-    updateDisplay(display.textContent + ".");
+    
   }
-});
-//DELETAR
-backspaceButton.addEventListener("click", () => {
-  display.textContent = display.textContent.slice(0, -1);
-  currentNumber = parseInt(display.textContent);
-  console.log("Current Number:", currentNumber);
-});
-//LIMPAR TUDO
-clearButton.addEventListener("click", () => {
-  updateDisplay("");
-  resetAll();
-});
+
+  compute() {
+    let computation;
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+    if (isNaN(prev) || isNaN(current)) return
+    switch (this.operation) {
+      case '+':
+        computation = prev + current;
+        break;
+      case '-':
+        computation = prev - current;
+        break;
+      case '*':
+        computation = prev * current;
+        break;
+      case '÷':
+        computation = prev/current;
+        break;
+      default:
+        return
+    }
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = '';
+  }
+
+  clear() {
+    this.previousOperand = '';
+    this.currentOperand = '';
+    this.operation = undefined;
+  }
+
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
+
+  appendNumber(number) {
+    if (number === "." && this.currentOperand.includes('.')) return
+    this.currentOperand = this.currentOperand.toString() + number.toString();
+  }
+
+  chooseOperation(operation) {
+    if (this.currentOperand === '') return
+    if (this.previousOperand !== '') {
+      this.compute();
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = '';
+  }
+
+  getDisplayNumber(number) {
+    const stringNumber = number.toString();
+    const integerDigits = parseFloat(stringNumber.split('.')[0]);
+    const decimalDigits = stringNumber.split('.')[1];
+    let integerDisplay;
+    if (isNaN(integerDigits))
+      integerDisplay = '';
+    else
+      integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 });
+
+    if (decimalDigits != null)
+      return `${integerDisplay}.${decimalDigits}`
+    else
+      return integerDisplay
+
+  }
+
+}
